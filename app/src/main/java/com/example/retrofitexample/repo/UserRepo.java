@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.retrofitexample.model.UserDetails;
+import com.example.retrofitexample.model.UserDetailsModel2;
 import com.example.retrofitexample.url.ApiClient;
 import com.example.retrofitexample.url.ApiInterface;
 
@@ -45,6 +46,31 @@ public class UserRepo {
             }
         });
 
+
+    }
+
+    public void getUserDetails2(String user){
+
+      ApiInterface apiInterface =  ApiClient.getRetrofit2().create(ApiInterface.class);
+      Call<ArrayList<UserDetailsModel2>> arrayListCall = apiInterface.getUsrDetails(user);
+
+      arrayListCall.enqueue(new Callback<ArrayList<UserDetailsModel2>>() {
+          @Override
+          public void onResponse(Call<ArrayList<UserDetailsModel2>> call, Response<ArrayList<UserDetailsModel2>> response) {
+              Log.i("APPDATA",""+call.request().url());
+              if (response.isSuccessful()){
+
+                  ArrayList<UserDetailsModel2> userDetailsModel2sLIst = response.body();
+                  Log.i("ARRAYLIST",userDetailsModel2sLIst.get(1).getName());
+
+              }
+          }
+
+          @Override
+          public void onFailure(Call<ArrayList<UserDetailsModel2>> call, Throwable t) {
+
+          }
+      });
 
     }
 }

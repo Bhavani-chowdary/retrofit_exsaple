@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         UserRepo userRepo = new UserRepo(this);
-        userRepo.getUSerDetails("fhq74");
+       // userRepo.getUSerDetails("fhq74");
+        userRepo.getUserDetails2("user");
     }
 }
